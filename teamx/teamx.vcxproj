@@ -78,6 +78,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EmergencyRoom.h" />
+    <ClInclude Include="OperatingRoom.h" />
+    <ClInclude Include="Patient.h" />
+    <ClInclude Include="PriorityQueue.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
