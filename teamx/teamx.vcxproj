@@ -76,13 +76,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EmergencyRoom.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PrecondViolatedExcep.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayMaxHeap.h" />
     <ClInclude Include="EmergencyRoom.h" />
+    <ClInclude Include="HeapInterface.h" />
+    <ClInclude Include="Heap_PriorityQueue.h" />
     <ClInclude Include="OperatingRoom.h" />
     <ClInclude Include="Patient.h" />
+    <ClInclude Include="PrecondViolatedExcep.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="PriorityQueueInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
