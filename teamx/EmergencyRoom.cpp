@@ -48,6 +48,24 @@ void EmergencyRoom::patientInput() {
 
 void EmergencyRoom::simHospital() {
 	// i have no idea how to do this...yet.
+	char answer = ' ';
+	cout << "Doc, would you like to review any of the patients files?" << endl;
+	cin >> answer;
+	if (answer == 'Y' || answer == 'y'){
+		string userInput = "";
+		do {
+			cout << "Enter the name of the patient whose file you wish to review"
+			<< endl;
+			cin >> userInput;
+			Patient foundPatient = waitingRoom.get(userInput);
+			cout << foundPatient;
+
+			cout << "Is there another patient whose file you would like to review? (Y/N): ";
+			cin >> answer;
+		} while (answer == 'Y' || answer == 'y');
+	}
+
+
 }
 
 Patient EmergencyRoom::requestNextPatient() {
