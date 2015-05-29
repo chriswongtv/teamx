@@ -49,7 +49,7 @@ void EmergencyRoom::patientInput() {
 
 void EmergencyRoom::simHospital() {
 	// i have no idea how to do this...yet.
-	char answer = ' ';
+	/*char answer = ' ';
 	cout << "Doc, would you like to review any of the patients files?" << endl;
 	cin >> answer;
 	if (answer == 'Y' || answer == 'y'){
@@ -65,7 +65,7 @@ void EmergencyRoom::simHospital() {
 			cin >> answer;
 		} while (answer == 'Y' || answer == 'y');
 	}
-
+	*/
 
 }
 
