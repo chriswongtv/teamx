@@ -5,6 +5,8 @@
 #ifndef _PATIENT
 #define _PATIENT
 
+using namespace std;
+
 class Patient
 {
 private:
@@ -22,19 +24,21 @@ public:
 	*/
 	Patient();
 
+	Patient(string, int, int);
+
 	/**
 	* Set the name of the patient.
 	* @pre none
 	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
 	*/
-	string setName()
+	string setName();
 
 	/**
 	* Set the arrival time for each patient.
 	* @pre none
 	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
 	*/
-	int setArrvalTime()
+	int setArrvalTime();
 
 	/**
 	* Set the severity and the estimated operation time based on the severity.
@@ -42,7 +46,7 @@ public:
 	* @param an integer between 1 and 10.
 	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
 	*/
-	int setSeverity() 
+	int setSeverity();
 
 	/**
 	* Get the name of the patient.
@@ -50,7 +54,7 @@ public:
 	* @post Get getName.
 	* @return name
 	*/
-	string getName() 
+	string getName();
 
 	/**
 	* Get the arrival time for the patient.
@@ -58,7 +62,9 @@ public:
 	* @post Get arrivalTime.
 	* @return arrival time.
 	*/
-	int getArrivalTime()
+	int getArrivalTime();
+
+	int getPriorityValue();
 
 	/**
 	* Get the estimated operation time of the patient.
@@ -66,9 +72,8 @@ public:
 	* @post Get estimateOoperationTime.
 	* @return estimated operation time.
 	*/
-	int getEstimatedOperationTime() 
+	int getEstimatedOperationTime();
 
 }; // end Patient
 
-//#include "Patient.cpp"
 #endif

@@ -37,13 +37,14 @@ void EmergencyRoom::promptInput() {
 void EmergencyRoom::patientInput() {
 	string name = "";
 	int priorityValue = 0;
+	int arrivalTime = 0;
 	cout << "Patient's name: ";
 	getline(cin, name);
 	cout << "Priority value: ";
 	cin >> priorityValue;
 
-	Patient newPatient(name, priorityValue);
-	waitingRoom.add(newPatient);
+	//Patient newPatient(name, priorityValue, arrivalTime);
+	//waitingRoom.add(newPatient);
 }
 
 void EmergencyRoom::simHospital() {

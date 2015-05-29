@@ -11,6 +11,7 @@ IDE Used: Xcode / Visual Studio Express 2013 / Code::Blocks / ...
 // All include statements starting from here
 #include <iostream>
 #include <string>
+#include "EmergencyRoom.h"
 
 using namespace std;
 
@@ -38,14 +39,14 @@ void goodBye();
 
 // Main function
 int main() {
-	hello();
-
+	//hello();
+	EmergencyRoom er;
 	// Attention:
 	// Provide data here and call your functions
 	// The main function should be simple and straightforward. 
 	// There should not be any 'logic' in the main function at all.
 
-	goodBye();
+	//goodBye();
 	return 0;
 }
 

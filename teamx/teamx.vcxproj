@@ -78,6 +78,8 @@
   <ItemGroup>
     <ClCompile Include="EmergencyRoom.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OperatingRoom.cpp" />
+    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="PrecondViolatedExcep.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -4,9 +4,11 @@
 #ifndef _EMERGENCY_ROOM
 #define _EMERGENCY_ROOM
 
+#include "Patient.h"
 #include "OperatingRoom.h"
 #include "Heap_PriorityQueue.h"
-#include "Patient.h"
+
+using namespace std;
 
 class EmergencyRoom
 {
@@ -57,6 +59,19 @@ public:
 	void simHospital();
 
 	/**
+	* Refreshes the screen with the queue's movement based on time.
+	* @pre none
+	* @post The queue's movement is displayed.
+	*/
+	void displayQueueMovement();
+
+	string getCurrentTime();
+
+	string getORPatientName(OperatingRoom&);
+
+	string getORMinutes(OperatingRoom&);
+
+	/**
 	* Get the first patient in the priority queue.
 	* @pre none
 	* @post The first patient is removed from the queue.
@@ -64,14 +79,8 @@ public:
 	*/
 	Patient requestNextPatient();
 
-	/**
-	* Refreshes the screen with the queue's movement based on time.
-	* @pre none
-	* @post The queue's movement is displayed.
-	*/
-	void displayQueueMovement();
+	string getQueuePatient(int);
 
 }; // end EmergencyRoom
 
-#include "EmergencyRoom.cpp"
 #endif

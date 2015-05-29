@@ -4,6 +4,10 @@
 #ifndef _OPERATING_ROOM
 #define _OPERATING_ROOM
 
+#include "Patient.h"
+
+using namespace std;
+
 class OperatingRoom// one per thread
 {
 private:
@@ -16,5 +20,4 @@ public:
 
 }; // end OperatingRoom
 
-//#include "OperatingRoom.cpp"
 #endif
