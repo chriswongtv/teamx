@@ -17,6 +17,7 @@ private:
 	OperatingRoom* OR2;							// Stores pointer to the second operating room
 	OperatingRoom* OR3;							// Stores pointer to the third operating room
 	Heap_PriorityQueue<Patient> waitingRoom;	// Stores the waiting room priority queue
+	int currentTime;									// Stores the current time
 public:
 	/**
 	* Default constructor - initializes private member functions.
@@ -49,6 +50,10 @@ public:
 	*/
 	void patientInput();
 
+	void reviewPatient();
+
+	void setTime();
+
 	/**
 	* Simulate the hospital queue's movements.
 	* @pre none
@@ -58,6 +63,8 @@ public:
 	void simHospital();
 
 	string getCurrentTime();
+
+	void updateTime();
 
 	string getORPatientName(OperatingRoom&);
 

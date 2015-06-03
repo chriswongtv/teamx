@@ -31,14 +31,7 @@ public:
 	* @pre none
 	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
 	*/
-	string setName();
-
-	/**
-	* Set the arrival time for each patient.
-	* @pre none
-	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
-	*/
-	int setArrvalTime();
+	void setName(string);
 
 	/**
 	* Set the severity and the estimated operation time based on the severity.
@@ -46,7 +39,16 @@ public:
 	* @param an integer between 1 and 10.
 	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
 	*/
-	int setSeverity();
+	void setSeverity(int);
+
+	void setEstimatedOperationTime(int);
+
+	/**
+	* Set the arrival time for each patient.
+	* @pre none
+	* @post Calls patientInput if user inputs yes, otherwise call simHospital.
+	*/
+	void setArrvalTime(int);
 
 	/**
 	* Get the name of the patient.
@@ -54,7 +56,7 @@ public:
 	* @post Get getName.
 	* @return name
 	*/
-	string getName();
+	string getName() const;
 
 	/**
 	* Get the arrival time for the patient.
@@ -62,9 +64,9 @@ public:
 	* @post Get arrivalTime.
 	* @return arrival time.
 	*/
-	int getArrivalTime();
+	int getArrivalTime() const;
 
-	int getPriorityValue();
+	int getSeverity() const;
 
 	/**
 	* Get the estimated operation time of the patient.
@@ -72,7 +74,7 @@ public:
 	* @post Get estimateOoperationTime.
 	* @return estimated operation time.
 	*/
-	int getEstimatedOperationTime();
+	int getEstimatedOperationTime() const;
 
 }; // end Patient
 

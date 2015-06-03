@@ -1,9 +1,7 @@
 #include <iostream>
 #include "OperatingRoom.h"
 
-
 using namespace std;
-
 
 enum status{
 	Empty = 0,

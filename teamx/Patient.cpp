@@ -14,30 +14,41 @@ Patient::Patient() {
 	estimatedOperationTime = 0;
 }
 
-string Patient::setName() {
-	return "";
+Patient::Patient(string n, int s, int a) {
+	setName(n);
+	setSeverity(s);
+	setArrvalTime(a);
 }
 
-int Patient::setArrvalTime() {
-	return 0;
+void Patient::setName(string n) {
+	name = n;
 }
 
-int Patient::setSeverity() {
-	return 0;
+void Patient::setSeverity(int s) {
+	severity = 0;
+	setEstimatedOperationTime(s);
 }
 
-string Patient::getName() {
+void Patient::setEstimatedOperationTime(int s) {
+	estimatedOperationTime = s;
+}
+
+void Patient::setArrvalTime(int a) {
+	arrivalTime = a;
+}
+
+string Patient::getName() const {
 	return name;
 }
 
-int Patient::getArrivalTime() {
+int Patient::getArrivalTime() const {
 	return arrivalTime;
 }
 
-int Patient::getPriorityValue() {
-	return -1;
+int Patient::getSeverity() const {
+	return severity;
 }
 
-int Patient::getEstimatedOperationTime() {
+int Patient::getEstimatedOperationTime() const {
 	return estimatedOperationTime;
 }
