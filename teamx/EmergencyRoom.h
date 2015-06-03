@@ -66,10 +66,6 @@ public:
 
 	void updateTime();
 
-	string getORPatientName(OperatingRoom&);
-
-	string getORMinutes(OperatingRoom&);
-
 	/**
 	* Get the first patient in the priority queue.
 	* @pre none

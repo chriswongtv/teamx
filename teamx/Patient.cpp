@@ -25,7 +25,7 @@ void Patient::setName(string n) {
 }
 
 void Patient::setSeverity(int s) {
-	severity = 0;
+	severity = s;
 	setEstimatedOperationTime(s);
 }
 

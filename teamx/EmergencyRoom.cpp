@@ -37,7 +37,15 @@ void EmergencyRoom::promptInput() {
 	} while (end == 'Y' || end == 'y');
 	*/
 	Patient newPatient("test", 7, 925);
+	Patient newPatient2("test", 5, 927);
+	Patient newPatient3("test", 4, 925);
+	Patient newPatient4("test", 8, 929);
+	Patient newPatient5("test", 1, 926);
 	waitingRoom.add(newPatient);
+	waitingRoom.add(newPatient2);
+	waitingRoom.add(newPatient3);
+	waitingRoom.add(newPatient4);
+	waitingRoom.add(newPatient5);
 }
 
 void EmergencyRoom::patientInput() {
@@ -84,9 +92,30 @@ void EmergencyRoom::setTime() {
 
 void EmergencyRoom::simHospital() {
 	bool end = false;
-	while (end == false)//&waitingRoom.peek() != nullptr)
+	while (end == false)
 	{
+		if (OR1->isEmpty() && waitingRoom.isEmpty() == false)
+		{
+			OR1->incomingPatient(requestNextPatient());
+			waitingRoom.remove();
+		}
+
+		if (OR2->isEmpty() && waitingRoom.isEmpty() == false)
+		{
+			OR2->incomingPatient(requestNextPatient());
+			waitingRoom.remove();
+		}
+
+		if (OR3->isEmpty() && waitingRoom.isEmpty() == false)
+		{
+			OR3->incomingPatient(requestNextPatient());
+			waitingRoom.remove();
+		}
+			
 		displayQueueMovement();
+		OR1->update();
+		OR2->update();
+		OR3->update();
 		cin.ignore();
 	}
 }
@@ -121,14 +150,6 @@ void EmergencyRoom::updateTime() {
 		currentTime++;
 }
 
-string EmergencyRoom::getORPatientName(OperatingRoom&) {
-	return "";
-}
-
-string EmergencyRoom::getORMinutes(OperatingRoom&) {
-	return "";
-}
-
 Patient EmergencyRoom::requestNextPatient() {
 	return waitingRoom.peek();
 }
@@ -144,12 +165,12 @@ void EmergencyRoom::displayQueueMovement() {
 		cout << "=";
 	cout << "|" << endl;
 
-	cout << "|       | " << ".------------." << "  |       | " << ".------------." << "  |       | " << ".------------." << "  |" << endl;
-	cout << "|       | " << "|            |" << "  |       | " << "|            |" << "  |       | " << "|            |" << "  |" << endl;
-	cout << "|  O R  | " << "|    " << /*getName(1) <<*/ "    |" << "  |  O R  | " << "|    " << /*getName(2) <<*/ "    |" << "  |  O R  | " << "|    " << /*getName(3) <<*/ "    |" << "  |" << endl;
-	cout << "|   1   | " << "| 5 min left |" << "  |   2   | " << "|            |" << "  |   3   | " << "|            |" << "  |" << endl;
-	cout << "|       | " << "|            |" << "  |       | " << "|            |" << "  |       | " << "|            |" << "  |" << endl;
-	cout << "|       | " << "'------------'" << "  |       | " << "'------------'" << "  |       | " << "'------------'" << "  |" << endl;
+	cout << "|       | " << ".------------."					<< "  |       | " << ".------------." << "  |       | " << ".------------." << "  |" << endl;
+	cout << "|       | " << "|            |"					<< "  |       | " << "|            |" << "  |       | " << "|            |" << "  |" << endl;
+	cout << "|  O R  | " << "|    " << OR1->getPatientName() << "    |  |  O R  | " << "|    " << OR2->getPatientName() << "    |" << "  |  O R  | " << "|    " << OR3->getPatientName() << "    |" << "  |" << endl;
+	cout << "|   1   | " << "| " << OR1->getTimeRemaining()	<< " |  |   2   | " << "| " << OR2->getTimeRemaining() << " |  |   3   | " << "| " << OR3->getTimeRemaining() << " |  |" << endl;
+	cout << "|       | " << "|            |" << "  |       | "	<< "|            |" << "  |       | " << "|            |" << "  |" << endl;
+	cout << "|       | " << "'------------'" << "  |       | "	<< "'------------'" << "  |       | " << "'------------'" << "  |" << endl;
 
 	cout << "|";
 	for (int i = 0; i < 77; i++)
