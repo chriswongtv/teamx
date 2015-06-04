@@ -83,7 +83,7 @@ void EmergencyRoom::reviewPatient() {
 }
 
 void EmergencyRoom::setTime() {
-	int minsBeforeFirstEvent = 5;
+	const int minsBeforeFirstEvent = 5;
 
 	int firstPatientTime = events.peek().getArrivalTime();
 	if ((firstPatientTime % 100) >= minsBeforeFirstEvent)
@@ -150,9 +150,14 @@ string EmergencyRoom::getCurrentTime() {
 }
 
 bool EmergencyRoom::incomingPatient() {
-	if (events.peek().getArrivalTime() == currentTime)
-		return true;
-	else
+	if (!events.isEmpty())
+	{
+		if (events.peek().getArrivalTime() == currentTime)
+			return true;
+		else
+			return false;
+	}
+	else 
 		return false;
 }
 
