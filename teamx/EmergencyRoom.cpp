@@ -36,11 +36,11 @@ void EmergencyRoom::promptInput() {
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
 	*/
-	Events newPatient("test", 7, 925);
-	Events newPatient2("test", 5, 927);
-	Events newPatient3("test", 4, 925);
-	Events newPatient4("test", 8, 929);
-	Events newPatient5("test", 1, 926);
+	Events newPatient("tes1", 7, 925);
+	Events newPatient2("tes2", 5, 927);
+	Events newPatient3("tes3", 4, 925);
+	Events newPatient4("tes4", 8, 929);
+	Events newPatient5("tes5", 1, 926);
 	events.add(newPatient);
 	events.add(newPatient2);
 	events.add(newPatient3);
@@ -83,7 +83,7 @@ void EmergencyRoom::reviewPatient() {
 }
 
 void EmergencyRoom::setTime() {
-	int firstPatientTime = events.peek().getPriorityValue();
+	int firstPatientTime = events.peek().getArrivalTime();
 	if ((firstPatientTime % 100) >= 5)
 		currentTime = firstPatientTime - 5;
 	else if ((firstPatientTime % 100) < 5)
@@ -148,7 +148,7 @@ string EmergencyRoom::getCurrentTime() {
 }
 
 bool EmergencyRoom::incomingPatient() {
-	if (events.peek().getPriorityValue() == currentTime)
+	if (events.peek().getArrivalTime() == currentTime)
 		return true;
 	else
 		return false;

@@ -5,7 +5,8 @@ using namespace std;
 
 OperatingRoom::OperatingRoom() {
 	theOneUnderTheKnife = nullptr;
-	timeRemaining = 0;
+	patientName = "";
+	timeRemaining = -1;
 }
 
 bool OperatingRoom::isEmpty() {
@@ -37,7 +38,10 @@ void OperatingRoom::update() {
 }
 
 string OperatingRoom::getPatientName() {
-	return patientName;
+	if (patientName == "")
+		return "    ";
+	else
+		return patientName;
 }
 
 string OperatingRoom::getTimeRemaining() {
