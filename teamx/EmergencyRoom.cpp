@@ -83,11 +83,13 @@ void EmergencyRoom::reviewPatient() {
 }
 
 void EmergencyRoom::setTime() {
+	int minsBeforeFirstEvent = 5;
+
 	int firstPatientTime = events.peek().getArrivalTime();
-	if ((firstPatientTime % 100) >= 5)
-		currentTime = firstPatientTime - 5;
-	else if ((firstPatientTime % 100) < 5)
-		currentTime = (firstPatientTime / 100 - 1) * 100 + 60 + (firstPatientTime % 100) - 5;
+	if ((firstPatientTime % 100) >= minsBeforeFirstEvent)
+		currentTime = firstPatientTime - minsBeforeFirstEvent;
+	else if ((firstPatientTime % 100) < minsBeforeFirstEvent)
+		currentTime = (firstPatientTime / 100 - 1) * 100 + 60 + (firstPatientTime % 100) - minsBeforeFirstEvent;
 }
 
 void EmergencyRoom::simHospital() {
