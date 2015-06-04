@@ -66,7 +66,7 @@ public:
 	*/
 	int getArrivalTime() const;
 
-	int getSeverity() const;
+	int getPriorityValue() const;
 
 	/**
 	* Get the estimated operation time of the patient.

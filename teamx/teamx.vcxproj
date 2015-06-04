@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EmergencyRoom.cpp" />
+    <ClCompile Include="Events.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OperatingRoom.cpp" />
     <ClCompile Include="Patient.cpp" />
@@ -85,6 +86,7 @@
   <ItemGroup>
     <ClInclude Include="ArrayMaxHeap.h" />
     <ClInclude Include="EmergencyRoom.h" />
+    <ClInclude Include="Events.h" />
     <ClInclude Include="HeapInterface.h" />
     <ClInclude Include="Heap_PriorityQueue.h" />
     <ClInclude Include="OperatingRoom.h" />

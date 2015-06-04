@@ -1,38 +1,9 @@
-﻿Build started 6/2/2015 11:22:02 PM.
+﻿Build started 6/3/2015 5:58:32 PM.
      1>Project "Y:\teamx\teamx\teamx.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EmergencyRoom.cpp main.cpp
-         EmergencyRoom.cpp
-     1>y:\teamx\teamx\arraymaxheap.h(57): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-                 y:\teamx\teamx\arraymaxheap.h(61) : see reference to class template instantiation 'ArrayMaxHeap<ItemType>' being compiled
-     1>y:\teamx\teamx\arraymaxheap.cpp(136): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>y:\teamx\teamx\heap_priorityqueue.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-                 y:\teamx\teamx\heap_priorityqueue.h(23) : see reference to class template instantiation 'Heap_PriorityQueue<ItemType>' being compiled
-     1>y:\teamx\teamx\heap_priorityqueue.cpp(35): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>y:\teamx\teamx\arraymaxheap.cpp(132): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-                 y:\teamx\teamx\arraymaxheap.cpp(130) : while compiling class template member function 'int ArrayMaxHeap<ItemType>::getHeight(void) const'
-                 with
-                 [
-                     ItemType=Patient
-                 ]
-                 y:\teamx\teamx\heap_priorityqueue.h(14) : see reference to class template instantiation 'ArrayMaxHeap<ItemType>' being compiled
-                 with
-                 [
-                     ItemType=Patient
-                 ]
-                 y:\teamx\teamx\emergencyroom.h(19) : see reference to class template instantiation 'Heap_PriorityQueue<Patient>' being compiled
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         main.cpp
-       Link:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Y:\teamx\Debug\teamx.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"Y:\teamx\Debug\teamx.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Y:\teamx\Debug\teamx.lib" /MACHINE:X86 Debug\EmergencyRoom.obj
-         Debug\main.obj
-         Debug\OperatingRoom.obj
-         Debug\Patient.obj
-         Debug\PrecondViolatedExcep.obj
+     1>Link:
          teamx.vcxproj -> Y:\teamx\Debug\teamx.exe
      1>Done Building Project "Y:\teamx\teamx\teamx.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.53
+Time Elapsed 00:00:00.14

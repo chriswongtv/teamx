@@ -36,16 +36,16 @@ void EmergencyRoom::promptInput() {
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
 	*/
-	Patient newPatient("test", 7, 925);
-	Patient newPatient2("test", 5, 927);
-	Patient newPatient3("test", 4, 925);
-	Patient newPatient4("test", 8, 929);
-	Patient newPatient5("test", 1, 926);
-	waitingRoom.add(newPatient);
-	waitingRoom.add(newPatient2);
-	waitingRoom.add(newPatient3);
-	waitingRoom.add(newPatient4);
-	waitingRoom.add(newPatient5);
+	Events newPatient("test", 7, 925);
+	Events newPatient2("test", 5, 927);
+	Events newPatient3("test", 4, 925);
+	Events newPatient4("test", 8, 929);
+	Events newPatient5("test", 1, 926);
+	events.add(newPatient);
+	events.add(newPatient2);
+	events.add(newPatient3);
+	events.add(newPatient4);
+	events.add(newPatient5);
 }
 
 void EmergencyRoom::patientInput() {
@@ -61,8 +61,8 @@ void EmergencyRoom::patientInput() {
 	cout << "Arrival time (military time): ";
 	cin >> arrivalTime;
 
-	Patient newPatient(name, priorityValue, arrivalTime);
-	waitingRoom.add(newPatient);
+	Events newPatient(name, priorityValue, arrivalTime);
+	events.add(newPatient);
 }
 
 void EmergencyRoom::reviewPatient() {
@@ -83,7 +83,7 @@ void EmergencyRoom::reviewPatient() {
 }
 
 void EmergencyRoom::setTime() {
-	int firstPatientTime = waitingRoom.peek().getArrivalTime();
+	int firstPatientTime = events.peek().getPriorityValue();
 	if ((firstPatientTime % 100) >= 5)
 		currentTime = firstPatientTime - 5;
 	else if ((firstPatientTime % 100) < 5)
@@ -92,8 +92,12 @@ void EmergencyRoom::setTime() {
 
 void EmergencyRoom::simHospital() {
 	bool end = false;
+
 	while (end == false)
 	{
+		while (incomingPatient())
+			movePatient();
+
 		if (OR1->isEmpty() && waitingRoom.isEmpty() == false)
 		{
 			OR1->incomingPatient(requestNextPatient());
@@ -141,6 +145,22 @@ string EmergencyRoom::getCurrentTime() {
 	updateTime();
 
 	return timeInString;
+}
+
+bool EmergencyRoom::incomingPatient() {
+	if (events.peek().getPriorityValue() == currentTime)
+		return true;
+	else
+		return false;
+}
+
+void EmergencyRoom::movePatient() {
+	string name = events.peek().getName();
+	int severity = events.peek().getSeverity();
+	int arrivalTime = events.peek().getPriorityValue();
+	Patient newPatient(name, severity, arrivalTime);
+	waitingRoom.add(newPatient);
+	events.remove();
 }
 
 void EmergencyRoom::updateTime() {

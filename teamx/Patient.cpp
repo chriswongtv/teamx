@@ -45,7 +45,7 @@ int Patient::getArrivalTime() const {
 	return arrivalTime;
 }
 
-int Patient::getSeverity() const {
+int Patient::getPriorityValue() const {
 	return severity;
 }
 

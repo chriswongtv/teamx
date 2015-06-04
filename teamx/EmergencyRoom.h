@@ -4,6 +4,7 @@
 #ifndef _EMERGENCY_ROOM
 #define _EMERGENCY_ROOM
 
+#include "Events.h"
 #include "Patient.h"
 #include "OperatingRoom.h"
 #include "Heap_PriorityQueue.h"
@@ -16,8 +17,9 @@ private:
 	OperatingRoom* OR1;							// Stores pointer to the first operating room
 	OperatingRoom* OR2;							// Stores pointer to the second operating room
 	OperatingRoom* OR3;							// Stores pointer to the third operating room
+	Heap_PriorityQueue<Events> events;			// Stores the incoming patient priority queue 
 	Heap_PriorityQueue<Patient> waitingRoom;	// Stores the waiting room priority queue
-	int currentTime;									// Stores the current time
+	int currentTime;							// Stores the current time
 public:
 	/**
 	* Default constructor - initializes private member functions.
@@ -63,6 +65,10 @@ public:
 	void simHospital();
 
 	string getCurrentTime();
+
+	bool incomingPatient();
+
+	void movePatient();
 
 	void updateTime();
 

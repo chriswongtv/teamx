@@ -54,13 +54,13 @@ void ArrayMaxHeap<ItemType>::heapRebuild(int subTreeRootIndex)
 		if (getRightChildIndex(subTreeRootIndex) != 0)
 		{
 			int rightChildIndex = largerChildIndex + 1; // Right child index
-			if (items[rightChildIndex].getSeverity() > items[largerChildIndex].getSeverity())
+			if (items[rightChildIndex].getPriorityValue() > items[largerChildIndex].getPriorityValue())
 				largerChildIndex = rightChildIndex; // Larger child index
 		}
 
 		// If the item in the root is smaller than the item in the larger child,
 		// swap items
-		if (items[subTreeRootIndex].getSeverity() < items[largerChildIndex].getSeverity())
+		if (items[subTreeRootIndex].getPriorityValue() < items[largerChildIndex].getPriorityValue())
 		{
 			swap(items[subTreeRootIndex], items[largerChildIndex]);
 			//Transform the semiheap rooted at largerChildIndex into a heap
@@ -165,7 +165,7 @@ bool ArrayMaxHeap<ItemType>::add(const ItemType& newData)
 
 		// Item is in place if the priority value of the newData is
 		// lesser or equal than the parent node's value
-		if (items[newDataIndex].getSeverity() <= items[parentIndex].getSeverity())
+		if (items[newDataIndex].getPriorityValue() <= items[parentIndex].getPriorityValue())
 			inPlace = true;
 		else
 		{
