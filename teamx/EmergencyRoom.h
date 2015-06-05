@@ -13,12 +13,15 @@ using namespace std;
 class EmergencyRoom
 {
 private:
+	static const int DEFAULT_CAPACITY = 101;
 	int patientCount;
 	OperatingRoom* OR1;							// Stores pointer to the first operating room
 	OperatingRoom* OR2;							// Stores pointer to the second operating room
 	OperatingRoom* OR3;							// Stores pointer to the third operating room
 	Heap_PriorityQueue<Events> events;			// Stores the incoming patient priority queue 
 	Heap_PriorityQueue<Patient> waitingRoom;	// Stores the waiting room priority queue
+	Patient waitingRoomArray[DEFAULT_CAPACITY];
+	int waitingRoomCount;
 	int currentTime;							// Stores the current time
 public:
 	/**
@@ -70,6 +73,10 @@ public:
 
 	void movePatient();
 
+	void updateWaitingRoomArray(Patient&);
+
+	void removeWaitingRoomArray();
+
 	void updateTime();
 
 	/**
@@ -88,6 +95,8 @@ public:
 	* @post The queue's movement is displayed.
 	*/
 	void displayQueueMovement();
+
+	string timeInString(int);
 
 }; // end EmergencyRoom
 

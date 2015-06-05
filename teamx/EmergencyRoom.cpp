@@ -9,6 +9,7 @@
 
 EmergencyRoom::EmergencyRoom() {
 	patientCount = 0;
+	waitingRoomCount = 0;
 	OR1 = new OperatingRoom;
 	OR2 = new OperatingRoom;
 	OR3 = new OperatingRoom;
@@ -22,7 +23,6 @@ EmergencyRoom::~EmergencyRoom() {
 	delete OR1;
 	delete OR2;
 	delete OR3;
-	patientCount = 0;
 }
 
 void EmergencyRoom::promptInput() {
@@ -37,15 +37,17 @@ void EmergencyRoom::promptInput() {
 	} while (end == 'Y' || end == 'y');
 	*/
 	Events newPatient("tes1", 7, 925);
-	Events newPatient2("tes2", 5, 927);
-	Events newPatient3("tes3", 4, 925);
-	Events newPatient4("tes4", 8, 929);
-	Events newPatient5("tes5", 1, 926);
+	Events newPatient2("tes2", 5, 925);
+	Events newPatient3("tes3", 7, 925);
+	Events newPatient4("tes4", 7, 925);
+	Events newPatient5("tes5", 7, 925);
+	Events newPatient6("tes6", 7, 925);
 	events.add(newPatient);
 	events.add(newPatient2);
 	events.add(newPatient3);
 	events.add(newPatient4);
 	events.add(newPatient5);
+	events.add(newPatient6);
 }
 
 void EmergencyRoom::patientInput() {
@@ -97,6 +99,9 @@ void EmergencyRoom::simHospital() {
 
 	while (end == false)
 	{
+		patientCount = 0;
+		waitingRoomCount = 0;
+
 		while (incomingPatient())
 			movePatient();
 
@@ -104,25 +109,31 @@ void EmergencyRoom::simHospital() {
 		{
 			OR1->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
+			removeWaitingRoomArray();
 		}
 
 		if (OR2->isEmpty() && waitingRoom.isEmpty() == false)
 		{
 			OR2->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
+			removeWaitingRoomArray();
 		}
 
 		if (OR3->isEmpty() && waitingRoom.isEmpty() == false)
 		{
 			OR3->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
+			removeWaitingRoomArray();
 		}
-			
+
 		displayQueueMovement();
 		OR1->update();
 		OR2->update();
 		OR3->update();
 		cin.ignore();
+
+		if (OR1->isEmpty() && OR2->isEmpty() && OR3->isEmpty() && waitingRoom.isEmpty() && events.isEmpty())
+			end = true;
 	}
 }
 
@@ -168,6 +179,22 @@ void EmergencyRoom::movePatient() {
 	Patient newPatient(name, severity, arrivalTime);
 	waitingRoom.add(newPatient);
 	events.remove();
+	updateWaitingRoomArray(newPatient);
+	patientCount++;
+}
+
+void EmergencyRoom::updateWaitingRoomArray(Patient& patient) {
+	waitingRoomArray[patientCount] = patient;
+	waitingRoomCount++;
+}
+
+void EmergencyRoom::removeWaitingRoomArray() {
+	for (int i = 0; i < waitingRoomCount; i++)
+	{
+		waitingRoomArray[i] = waitingRoomArray[i + 1];
+	}
+
+	waitingRoomCount--;
 }
 
 void EmergencyRoom::updateTime() {
@@ -204,9 +231,38 @@ void EmergencyRoom::displayQueueMovement() {
 		cout << "=";
 	cout << "|" << endl;
 
-	cout << "| " << ".--------." << setw(67) << "|" << endl;
-	cout << "| " << "| Carmen |" << setw(67) << "|" << endl;
-	cout << "| " << "'--------'" << setw(67) << "|" << endl;
+	cout << "| ";
+	for (int i = 0; i < 4; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << ".--------------. ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
+	cout << "| ";
+	for (int i = 0; i < 4; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "| " << waitingRoomArray[i].getName() << " " << waitingRoomArray[i].getPriorityValue() << " " << timeInString(waitingRoomArray[i].getArrivalTime()) << " | ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
+	cout << "| ";
+	for (int i = 0; i < 4; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "'--------------' ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
+	//cout << "| " << "| John 7 09:10 |" << setw(61) << "|" << endl;
+	//cout << "| " << "'--------------'" << setw(61) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
@@ -220,4 +276,29 @@ void EmergencyRoom::displayQueueMovement() {
 	for (int i = 0; i < 79; i++)
 		cout << "=";
 	cout << endl;
+}
+
+string EmergencyRoom::timeInString(int t) {
+	string hour = "";
+	string minute = "";
+
+	if (t < 0)
+		t *= (-1);
+
+	string time = to_string(t);
+
+	if (currentTime >= 1000)
+	{
+		hour = time.substr(0, 2);
+		minute = time.substr(2, 3);
+	}
+	else
+	{
+		hour = "0" + time.substr(0, 1);
+		minute = time.substr(1, 2);
+	}
+
+	time = hour + ":" + minute;
+
+	return time;
 }
