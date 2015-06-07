@@ -16,7 +16,10 @@ Events::Events(string n, int s, int t) {
 }
 
 Events::~Events() {
-
+	name = "";
+	severity = 0;
+	arrivalTime = 0;
+	priorityValue = 0;
 }
 
 void Events::setName(string n) {

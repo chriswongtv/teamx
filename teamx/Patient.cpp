@@ -20,6 +20,13 @@ Patient::Patient(string n, int s, int a) {
 	setArrvalTime(a);
 }
 
+Patient::~Patient() {
+	name = "";
+	severity = 0;
+	arrivalTime = 0;
+	estimatedOperationTime = 0;
+}
+
 void Patient::setName(string n) {
 	name = n;
 }

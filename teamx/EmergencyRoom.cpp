@@ -37,17 +37,25 @@ void EmergencyRoom::promptInput() {
 	} while (end == 'Y' || end == 'y');
 	*/
 	Events newPatient("tes1", 7, 925);
-	Events newPatient2("tes2", 5, 925);
-	Events newPatient3("tes3", 7, 925);
-	Events newPatient4("tes4", 7, 925);
-	Events newPatient5("tes5", 7, 925);
-	Events newPatient6("tes6", 7, 925);
+	Events newPatient2("tes2", 7, 926);
+	Events newPatient3("tes3", 7, 927);
+	Events newPatient4("tes4", 7, 928);
+	Events newPatient5("tes5", 7, 929);
+	Events newPatient6("tes6", 7, 930);
+	Events newPatient7("tes7", 7, 931);
+	Events newPatient8("tes8", 7, 932);
+	Events newPatient9("tes9", 7, 933);
+	Events newPatient10("te10", 7, 934);
 	events.add(newPatient);
 	events.add(newPatient2);
 	events.add(newPatient3);
 	events.add(newPatient4);
 	events.add(newPatient5);
 	events.add(newPatient6);
+	events.add(newPatient7);
+	events.add(newPatient8);
+	events.add(newPatient9);
+	events.add(newPatient10);
 }
 
 void EmergencyRoom::patientInput() {
@@ -102,28 +110,31 @@ void EmergencyRoom::simHospital() {
 		patientCount = 0;
 		waitingRoomCount = 0;
 
-		while (incomingPatient())
+		while (isPatientIncoming())
 			movePatient();
 
-		if (OR1->isEmpty() && waitingRoom.isEmpty() == false)
+		if (OR1->isEmpty() && !waitingRoom.isEmpty())
 		{
 			OR1->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
 			removeWaitingRoomArray();
+			patientCount--;
 		}
 
-		if (OR2->isEmpty() && waitingRoom.isEmpty() == false)
+		if (OR2->isEmpty() && !waitingRoom.isEmpty())
 		{
 			OR2->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
 			removeWaitingRoomArray();
+			patientCount--;
 		}
 
-		if (OR3->isEmpty() && waitingRoom.isEmpty() == false)
+		if (OR3->isEmpty() && !waitingRoom.isEmpty())
 		{
 			OR3->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
 			removeWaitingRoomArray();
+			patientCount--;
 		}
 
 		displayQueueMovement();
@@ -160,7 +171,7 @@ string EmergencyRoom::getCurrentTime() {
 	return timeInString;
 }
 
-bool EmergencyRoom::incomingPatient() {
+bool EmergencyRoom::isPatientIncoming() {
 	if (!events.isEmpty())
 	{
 		if (events.peek().getArrivalTime() == currentTime)
@@ -175,7 +186,7 @@ bool EmergencyRoom::incomingPatient() {
 void EmergencyRoom::movePatient() {
 	string name = events.peek().getName();
 	int severity = events.peek().getSeverity();
-	int arrivalTime = events.peek().getPriorityValue();
+	int arrivalTime = events.peek().getArrivalTime();
 	Patient newPatient(name, severity, arrivalTime);
 	waitingRoom.add(newPatient);
 	events.remove();
@@ -184,7 +195,7 @@ void EmergencyRoom::movePatient() {
 }
 
 void EmergencyRoom::updateWaitingRoomArray(Patient& patient) {
-	waitingRoomArray[patientCount] = patient;
+	waitingRoomArray[waitingRoomCount] = patient;
 	waitingRoomCount++;
 }
 
@@ -230,7 +241,7 @@ void EmergencyRoom::displayQueueMovement() {
 	for (int i = 0; i < 77; i++)
 		cout << "=";
 	cout << "|" << endl;
-
+	
 	cout << "| ";
 	for (int i = 0; i < 4; i++)
 	{

@@ -69,7 +69,7 @@ public:
 
 	string getCurrentTime();
 
-	bool incomingPatient();
+	bool isPatientIncoming();
 
 	void movePatient();
 

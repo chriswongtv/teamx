@@ -26,6 +26,8 @@ public:
 
 	Patient(string, int, int);
 
+	~Patient();
+
 	/**
 	* Set the name of the patient.
 	* @pre none

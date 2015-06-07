@@ -60,7 +60,7 @@ void ArrayMaxHeap<ItemType>::heapRebuild(int subTreeRootIndex)
 
 		// If the item in the root is smaller than the item in the larger child,
 		// swap items
-		if (items[subTreeRootIndex].getPriorityValue() < items[largerChildIndex].getPriorityValue())
+		if (items[subTreeRootIndex].getPriorityValue() <= items[largerChildIndex].getPriorityValue())
 		{
 			swap(items[subTreeRootIndex], items[largerChildIndex]);
 			//Transform the semiheap rooted at largerChildIndex into a heap
