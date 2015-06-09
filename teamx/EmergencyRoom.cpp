@@ -36,15 +36,15 @@ void EmergencyRoom::promptInput() {
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
 	*/
-	Events newPatient("tes1", 1, 925);
-	Events newPatient2("tes2", 2, 926);
-	Events newPatient3("tes3", 3, 927);
-	Events newPatient4("tes4", 4, 928);
-	Events newPatient5("tes5", 5, 929);
-	Events newPatient6("tes6", 6, 930);
+	Events newPatient("tes1", 7, 925);
+	Events newPatient2("tes2", 7, 926);
+	Events newPatient3("tes3", 7, 927);
+	Events newPatient4("tes4", 7, 928);
+	Events newPatient5("tes5", 7, 929);
+	Events newPatient6("tes6", 7, 930);
 	Events newPatient7("tes7", 7, 931);
-	Events newPatient8("tes8", 8, 932);
-	Events newPatient9("tes9", 9, 933);
+	Events newPatient8("tes8", 7, 932);
+	Events newPatient9("tes9", 7, 933);
 	//Events newPatient10("te10", 1, 934);
 	events.add(newPatient);
 	events.add(newPatient2);

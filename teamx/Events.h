@@ -23,6 +23,10 @@ public:
 	int getSeverity();
 	int getArrivalTime();
 	int getPriorityValue();
+
+	bool operator>(Events&) const;
+
+	bool operator<=(Events&) const;
 };
 
 #endif

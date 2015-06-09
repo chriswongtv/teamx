@@ -54,13 +54,13 @@ void ArrayMaxHeap<ItemType>::heapRebuild(int subTreeRootIndex)
 		if (getRightChildIndex(subTreeRootIndex) != 0)
 		{
 			int rightChildIndex = largerChildIndex + 1; // Right child index
-			if (items[rightChildIndex].getPriorityValue() > items[largerChildIndex].getPriorityValue())
+			if (items[rightChildIndex] > items[largerChildIndex])
 				largerChildIndex = rightChildIndex; // Larger child index
 		}
 
 		// If the item in the root is smaller than the item in the larger child,
 		// swap items
-		if (items[subTreeRootIndex].getPriorityValue() <= items[largerChildIndex].getPriorityValue())
+		if (items[subTreeRootIndex] <= items[largerChildIndex])
 		{
 			swap(items[subTreeRootIndex], items[largerChildIndex]);
 			//Transform the semiheap rooted at largerChildIndex into a heap

@@ -60,6 +60,20 @@ int Patient::getEstimatedOperationTime() const {
 	return estimatedOperationTime;
 }
 
-/*bool Patient::operator>(Patient& rhs) const {
-	
-}*/
+bool Patient::operator>(Patient& rhs) const {
+	if (getPriorityValue() >= rhs.getPriorityValue() && getArrivalTime() < rhs.getArrivalTime()){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool Patient::operator<=(Patient& rhs) const {
+	if (getPriorityValue() <= rhs.getPriorityValue() && getArrivalTime() > rhs.getArrivalTime()){
+		return true;
+	}
+	else{
+		return false;
+	}
+}

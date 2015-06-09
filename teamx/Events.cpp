@@ -52,3 +52,21 @@ int Events::getArrivalTime() {
 int Events::getPriorityValue() {
 	return priorityValue;
 }
+
+bool Events::operator>(Events& rhs) const {
+	if (severity >= rhs.getSeverity() && arrivalTime < rhs.getArrivalTime()){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool Events::operator<=(Events& rhs) const {
+	if (severity <= rhs.getSeverity() && arrivalTime > rhs.getArrivalTime()){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
