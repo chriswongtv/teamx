@@ -165,7 +165,7 @@ bool ArrayMaxHeap<ItemType>::add(const ItemType& newData)
 
 		// Item is in place if the priority value of the newData is
 		// lesser or equal than the parent node's value
-		if (items[newDataIndex].getPriorityValue() <= items[parentIndex].getPriorityValue())
+		if (items[newDataIndex] <= items[parentIndex])
 			inPlace = true;
 		else
 		{

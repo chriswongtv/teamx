@@ -61,19 +61,54 @@ int Patient::getEstimatedOperationTime() const {
 }
 
 bool Patient::operator>(Patient& rhs) const {
-	if (getPriorityValue() >= rhs.getPriorityValue() && getArrivalTime() < rhs.getArrivalTime()){
-		return true;
+	bool samePriority = ( getPriorityValue() == rhs.getPriorityValue() );
+	bool sameArrivalTime = ( getArrivalTime() == rhs.getArrivalTime() );
+
+	if (samePriority && !sameArrivalTime){
+		if (getArrivalTime() < rhs.getArrivalTime() ){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (!samePriority){
+		if (getPriorityValue() > rhs.getPriorityValue()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	else{
-		return false;
+
 	}
 }
 
 bool Patient::operator<=(Patient& rhs) const {
-	if (getPriorityValue() <= rhs.getPriorityValue() && getArrivalTime() > rhs.getArrivalTime()){
+	bool samePriority = (getPriorityValue() == rhs.getPriorityValue());
+	bool sameArrivalTime = (getArrivalTime() == rhs.getArrivalTime());
+
+	if (samePriority && !sameArrivalTime){
+		if (getArrivalTime() > rhs.getArrivalTime()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (!samePriority){
+		if (getPriorityValue() <= rhs.getPriorityValue()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (samePriority && sameArrivalTime){
 		return true;
 	}
 	else{
-		return false;
+
 	}
 }

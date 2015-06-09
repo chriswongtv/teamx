@@ -54,19 +54,54 @@ int Events::getPriorityValue() {
 }
 
 bool Events::operator>(Events& rhs) const {
-	if (severity >= rhs.getSeverity() && arrivalTime < rhs.getArrivalTime()){
-		return true;
+	bool samePriority = true;
+	bool sameArrivalTime = (arrivalTime == rhs.getArrivalTime());
+
+	if (samePriority && !sameArrivalTime){
+		if (arrivalTime < rhs.getArrivalTime()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (!samePriority){
+		if (severity >= rhs.getSeverity()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	else{
-		return false;
+
 	}
 }
 
 bool Events::operator<=(Events& rhs) const {
-	if (severity <= rhs.getSeverity() && arrivalTime > rhs.getArrivalTime()){
+	bool samePriority = true;
+	bool sameArrivalTime = (arrivalTime == rhs.getArrivalTime());
+
+	if (samePriority && !sameArrivalTime){
+		if (arrivalTime > rhs.getArrivalTime()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (!samePriority){
+		if (severity <= rhs.getSeverity()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if (samePriority && sameArrivalTime){
 		return true;
 	}
 	else{
-		return false;
+
 	}
 }
