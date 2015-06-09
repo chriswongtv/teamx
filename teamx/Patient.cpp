@@ -59,3 +59,7 @@ int Patient::getPriorityValue() const {
 int Patient::getEstimatedOperationTime() const {
 	return estimatedOperationTime;
 }
+
+/*bool Patient::operator>(Patient& rhs) const {
+	
+}*/

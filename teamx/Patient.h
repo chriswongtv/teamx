@@ -78,6 +78,7 @@ public:
 	*/
 	int getEstimatedOperationTime() const;
 
+	bool operator>(Patient&) const;
 }; // end Patient
 
 #endif
