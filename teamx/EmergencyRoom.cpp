@@ -27,7 +27,7 @@ EmergencyRoom::~EmergencyRoom() {
 
 void EmergencyRoom::promptInput() {
 	char end = ' ';
-	/*
+	
 	do {
 		patientInput();
 		patientCount++;
@@ -35,16 +35,16 @@ void EmergencyRoom::promptInput() {
 		cin.clear();
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
-	*/
+	
 	Events newPatient("tes1", 1, 925);
-	Events newPatient2("tes2", 2, 926);
-	Events newPatient3("tes3", 3, 927);
-	Events newPatient4("tes4", 4, 928);
-	Events newPatient5("tes5", 5, 929);
-	Events newPatient6("tes6", 6, 930);
-	Events newPatient7("tes7", 7, 931);
-	Events newPatient8("tes8", 8, 932);
-	Events newPatient9("tes9", 9, 933);
+	Events newPatient2("tes2", 2, 925);
+	Events newPatient3("tes3", 3, 925);
+	Events newPatient4("tes4", 4, 925);
+	Events newPatient5("tes5", 5, 925);
+	Events newPatient6("tes6", 6, 925);
+	Events newPatient7("tes7", 7, 925);
+	Events newPatient8("tes8", 8, 925);
+	Events newPatient9("tes9", 9, 925);
 	//Events newPatient10("te10", 1, 934);
 	events.add(newPatient);
 	events.add(newPatient2);
@@ -68,7 +68,7 @@ void EmergencyRoom::patientInput() {
 	int arrivalTime = 0;
 	cout << "Patient's name: ";
 	cin.clear();
-	getline(cin, name);
+	cin >> name;
 	cin.clear();
 	cout << "Priority value: ";
 	cin >> priorityValue;
