@@ -20,6 +20,8 @@ private:
 	OperatingRoom* OR3;							// Stores pointer to the third operating room
 	Heap_PriorityQueue<Events> events;			// Stores the incoming patient priority queue 
 	Heap_PriorityQueue<Patient> waitingRoom;	// Stores the waiting room priority queue
+	Heap_PriorityQueue<Patient> waitingRoomDisplay;
+	Patient patients[DEFAULT_CAPACITY];
 	Patient waitingRoomArray[DEFAULT_CAPACITY];
 	int waitingRoomCount;
 	int currentTime;							// Stores the current time
@@ -67,13 +69,15 @@ public:
 	*/
 	void simHospital();
 
+	void moveArrayToQueue();
+
 	string getCurrentTime();
 
 	bool isPatientIncoming();
 
 	void movePatient();
 
-	void updateWaitingRoomArray(Patient&);
+	void updateWaitingRoomArray();
 
 	void removeWaitingRoomArray();
 

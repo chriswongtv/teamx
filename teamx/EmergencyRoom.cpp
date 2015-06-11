@@ -14,7 +14,7 @@ EmergencyRoom::EmergencyRoom() {
 	OR2 = new OperatingRoom;
 	OR3 = new OperatingRoom;
 	promptInput();
-	//reviewPatient();
+	reviewPatient();
 	setTime();
 	simHospital();
 }
@@ -35,17 +35,16 @@ void EmergencyRoom::promptInput() {
 		cin.clear();
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
-	
-	Events newPatient("tes1", 1, 925);
-	Events newPatient2("tes2", 2, 925);
-	Events newPatient3("tes3", 3, 925);
-	Events newPatient4("tes4", 4, 925);
-	Events newPatient5("tes5", 5, 925);
-	Events newPatient6("tes6", 6, 925);
-	Events newPatient7("tes7", 7, 925);
-	Events newPatient8("tes8", 8, 925);
-	Events newPatient9("tes9", 9, 925);
-	//Events newPatient10("te10", 1, 934);
+
+	Events newPatient("tes1", 8, 925);
+	Events newPatient2("tes2", 6, 926);
+	Events newPatient3("tes3", 6, 927);
+	Events newPatient4("tes4", 7, 928);
+	Events newPatient5("tes5", 5, 929);
+	Events newPatient6("tes6", 6, 930);
+	Events newPatient7("tes7", 7, 931);
+	Events newPatient8("tes8", 8, 932);
+	Events newPatient9("tes9", 9, 933);
 	events.add(newPatient);
 	events.add(newPatient2);
 	events.add(newPatient3);
@@ -55,11 +54,6 @@ void EmergencyRoom::promptInput() {
 	events.add(newPatient7);
 	events.add(newPatient8);
 	events.add(newPatient9);
-	//events.add(newPatient10);
-	/*for (int i = 0; i < 20; i++){
-		cout << events.peek().getSeverity() << "    " << events.peek().getArrivalTime() << endl;
-		events.remove();
-	}*/
 }
 
 void EmergencyRoom::patientInput() {
@@ -75,21 +69,34 @@ void EmergencyRoom::patientInput() {
 	cout << "Arrival time (military time): ";
 	cin >> arrivalTime;
 
-	Events newPatient(name, priorityValue, arrivalTime);
-	events.add(newPatient);
+	Events newEvent(name, priorityValue, arrivalTime);
+	Patient newPatient(name, priorityValue, arrivalTime);
+	events.add(newEvent);
+	patients[patientCount] = newPatient;
 }
 
 void EmergencyRoom::reviewPatient() {
 	char answer = ' ';
-	cout << "Doc, would you like to review any of the patients files?" << endl;
+	cout << "Doc, would you like to review any of the patients files? (Y/N): ";
 	cin >> answer;
 	while (answer == 'Y' || answer == 'y'){
 		string userInput = "";
-		cout << "Enter the name of the patient whose file you wish to review"
-			<< endl;
+		cout << "Enter the name of the patient whose file you wish to review: ";
 		cin >> userInput;
-		//Patient foundPatient = waitingRoom.get(userInput);
-		//cout << foundPatient;
+
+		bool found = false;
+		Patient *foundPatient = nullptr;
+		for (int currentIndex = 0; currentIndex <= patientCount; currentIndex++){
+			if (userInput == patients[currentIndex].getName()){
+				foundPatient = &patients[currentIndex];
+				cout << "Name: " << foundPatient->getName() << endl << "Severity: " << foundPatient->getPriorityValue() << endl << "Arrival Time: " << foundPatient->getArrivalTime() << endl;
+				found = true;
+				break;
+			}
+		}
+		if (!found){
+			cout << userInput << " has not been found!" << endl;
+		}
 
 		cout << "Is there another patient whose file you would like to review? (Y/N): ";
 		cin >> answer;
@@ -112,7 +119,8 @@ void EmergencyRoom::simHospital() {
 	while (end == false)
 	{
 		patientCount = 0;
-		waitingRoomCount = 0;
+
+		moveArrayToQueue();
 
 		while (isPatientIncoming())
 			movePatient();
@@ -121,7 +129,7 @@ void EmergencyRoom::simHospital() {
 		{
 			OR1->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
-			removeWaitingRoomArray();
+			waitingRoomDisplay.remove();
 			patientCount--;
 		}
 
@@ -129,7 +137,7 @@ void EmergencyRoom::simHospital() {
 		{
 			OR2->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
-			removeWaitingRoomArray();
+			waitingRoomDisplay.remove();
 			patientCount--;
 		}
 
@@ -137,9 +145,11 @@ void EmergencyRoom::simHospital() {
 		{
 			OR3->incomingPatient(requestNextPatient());
 			waitingRoom.remove();
-			removeWaitingRoomArray();
+			waitingRoomDisplay.remove();
 			patientCount--;
 		}
+
+		updateWaitingRoomArray();
 
 		displayQueueMovement();
 		OR1->update();
@@ -150,6 +160,13 @@ void EmergencyRoom::simHospital() {
 		if (OR1->isEmpty() && OR2->isEmpty() && OR3->isEmpty() && waitingRoom.isEmpty() && events.isEmpty())
 			end = true;
 	}
+}
+
+void EmergencyRoom::moveArrayToQueue() {
+	for (int i = 0; i < waitingRoomCount; i++)
+		waitingRoomDisplay.add(waitingRoomArray[i]);
+
+	waitingRoomCount = 0;
 }
 
 string EmergencyRoom::getCurrentTime() {
@@ -194,13 +211,17 @@ void EmergencyRoom::movePatient() {
 	Patient newPatient(name, severity, arrivalTime);
 	waitingRoom.add(newPatient);
 	events.remove();
-	updateWaitingRoomArray(newPatient);
+	waitingRoomDisplay.add(newPatient);
 	patientCount++;
 }
 
-void EmergencyRoom::updateWaitingRoomArray(Patient& patient) {
-	waitingRoomArray[waitingRoomCount] = patient;
-	waitingRoomCount++;
+void EmergencyRoom::updateWaitingRoomArray() {
+	for (int i = 0; !waitingRoomDisplay.isEmpty(); i++)
+	{
+		waitingRoomArray[i] = waitingRoomDisplay.peek();
+		waitingRoomDisplay.remove();
+		waitingRoomCount++;
+	}
 }
 
 void EmergencyRoom::removeWaitingRoomArray() {
@@ -236,7 +257,7 @@ void EmergencyRoom::displayQueueMovement() {
 
 	cout << "|       | " << ".------------."					<< "  |       | " << ".------------." << "  |       | " << ".------------." << "  |" << endl;
 	cout << "|       | " << "|            |"					<< "  |       | " << "|            |" << "  |       | " << "|            |" << "  |" << endl;
-	cout << "|  O R  | " << "|    " << OR1->getPatientName() << "    |  |  O R  | " << "|    " << OR2->getPatientName() << "    |" << "  |  O R  | " << "|    " << OR3->getPatientName() << "    |" << "  |" << endl;
+	cout << "|  O R  | " << "|    " << setw(4) << OR1->getPatientName() << "    |  |  O R  | " << "|    " << setw(4) << OR2->getPatientName() << "    |" << "  |  O R  | " << "|    " << setw(4) << OR3->getPatientName() << "    |" << "  |" << endl;
 	cout << "|   1   | " << "| " << OR1->getTimeRemaining()	<< " |  |   2   | " << "| " << OR2->getTimeRemaining() << " |  |   3   | " << "| " << OR3->getTimeRemaining() << " |  |" << endl;
 	cout << "|       | " << "|            |" << "  |       | "	<< "|            |" << "  |       | " << "|            |" << "  |" << endl;
 	cout << "|       | " << "'------------'" << "  |       | "	<< "'------------'" << "  |       | " << "'------------'" << "  |" << endl;
@@ -260,7 +281,7 @@ void EmergencyRoom::displayQueueMovement() {
 	for (int i = 0; i < 4; i++)
 	{
 		if (i < waitingRoomCount)
-			cout << "| " << waitingRoomArray[i].getName() << " " << waitingRoomArray[i].getPriorityValue() << " " << timeInString(waitingRoomArray[i].getArrivalTime()) << " | ";
+			cout << "| " << setw(4) << waitingRoomArray[i].getName() << " " << waitingRoomArray[i].getPriorityValue() << " " << timeInString(waitingRoomArray[i].getArrivalTime()) << " | ";
 		else
 			cout << "                 ";
 	}
@@ -276,16 +297,74 @@ void EmergencyRoom::displayQueueMovement() {
 	}
 	cout << "        |" << endl;
 
-	//cout << "| " << "| John 7 09:10 |" << setw(61) << "|" << endl;
-	//cout << "| " << "'--------------'" << setw(61) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
+
+	cout << "| ";
+	for (int i = 4; i < 8; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << ".--------------. ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
+	cout << "| ";
+	for (int i = 4; i < 8; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "| " << setw(4) << waitingRoomArray[i].getName() << " " << waitingRoomArray[i].getPriorityValue() << " " << timeInString(waitingRoomArray[i].getArrivalTime()) << " | ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
+	cout << "| ";
+	for (int i = 4; i < 8; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "'--------------' ";
+		else
+			cout << "                 ";
+	}
+	cout << "        |" << endl;
+
 	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
-	cout << "| " << setw(77) << "|" << endl;
+
+	cout << "| ";
+	for (int i = 8; i < 10; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << ".--------------. ";
+		else
+			cout << "                 ";
+	}
+
+	cout << "               .------------------------. |" << endl;
+
+	cout << "| ";
+	for (int i = 8; i < 10; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "| " << setw(4) <<waitingRoomArray[i].getName() << " " << waitingRoomArray[i].getPriorityValue() << " " << timeInString(waitingRoomArray[i].getArrivalTime()) << " | ";
+		else
+			cout << "                 ";
+	}
+	if (!events.isEmpty())
+		cout << "               | INCOMING: " << setw(4) << events.peek().getName() << " " << events.peek().getSeverity() << " " << timeInString(events.peek().getArrivalTime()) << " | |" << endl;
+	else
+		cout << "               | INCOMING: " << setw(16) << "| |" << endl;
+
+	cout << "| ";
+	for (int i = 8; i < 10; i++)
+	{
+		if (i < waitingRoomCount)
+			cout << "'--------------' ";
+		else
+			cout << "                 ";
+	}
+	cout << "               '------------------------' |" << endl;
+
 	cout << "| " << setw(77) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
 	for (int i = 0; i < 79; i++)

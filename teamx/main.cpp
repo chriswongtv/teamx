@@ -52,6 +52,14 @@ int main() {
 
 // All function definitions starting from here
 
+void hello() {
+
+}
+
+void goodBye() {
+
+}
+
 /*
 Copy program interaction between user and the program here.
 */
