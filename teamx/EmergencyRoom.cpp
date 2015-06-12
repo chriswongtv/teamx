@@ -27,7 +27,15 @@ EmergencyRoom::~EmergencyRoom() {
 
 void EmergencyRoom::promptInput() {
 	char end = ' ';
-	
+
+	system("cls");
+
+	for (int i = 0; i < 80; i++)
+		cout << "=";
+	cout << "|                                 PATIENT INPUT                                |";
+	for (int i = 0; i < 80; i++)
+		cout << "=";
+
 	do {
 		patientInput();
 		patientCount++;
@@ -36,7 +44,7 @@ void EmergencyRoom::promptInput() {
 		cin >> end;
 	} while (end == 'Y' || end == 'y');
 
-	Events newPatient("tes1", 8, 925);
+	/*Events newPatient("tes1", 8, 925);
 	Events newPatient2("tes2", 6, 926);
 	Events newPatient3("tes3", 6, 927);
 	Events newPatient4("tes4", 7, 928);
@@ -53,7 +61,7 @@ void EmergencyRoom::promptInput() {
 	events.add(newPatient6);
 	events.add(newPatient7);
 	events.add(newPatient8);
-	events.add(newPatient9);
+	events.add(newPatient9);*/
 }
 
 void EmergencyRoom::patientInput() {
@@ -61,13 +69,16 @@ void EmergencyRoom::patientInput() {
 	int priorityValue = 0;
 	int arrivalTime = 0;
 	cout << "Patient's name: ";
-	cin.clear();
 	cin >> name;
-	cin.clear();
-	cout << "Priority value: ";
-	cin >> priorityValue;
-	cout << "Arrival time (military time): ";
-	cin >> arrivalTime;
+	do {
+		cout << "Priority value: ";
+		cin >> priorityValue;
+	} while (priorityValue < 1 || priorityValue > 10);
+
+	do {
+		cout << "Arrival time (military time): ";
+		cin >> arrivalTime;
+	} while (arrivalTime < 0 || arrivalTime > 2359);
 
 	Events newEvent(name, priorityValue, arrivalTime);
 	Patient newPatient(name, priorityValue, arrivalTime);
@@ -76,6 +87,14 @@ void EmergencyRoom::patientInput() {
 }
 
 void EmergencyRoom::reviewPatient() {
+	system("cls");
+
+	for (int i = 0; i < 80; i++)
+		cout << "=";
+	cout << "|                                PATIENT REVIEW                                |";
+	for (int i = 0; i < 80; i++)
+		cout << "=";
+
 	char answer = ' ';
 	cout << "Doc, would you like to review any of the patients files? (Y/N): ";
 	cin >> answer;
@@ -89,7 +108,9 @@ void EmergencyRoom::reviewPatient() {
 		for (int currentIndex = 0; currentIndex <= patientCount; currentIndex++){
 			if (userInput == patients[currentIndex].getName()){
 				foundPatient = &patients[currentIndex];
-				cout << "Name: " << foundPatient->getName() << endl << "Severity: " << foundPatient->getPriorityValue() << endl << "Arrival Time: " << foundPatient->getArrivalTime() << endl;
+				cout << "Name: " << foundPatient->getName() << endl;
+				cout << "Severity: " << foundPatient->getPriorityValue() << endl;
+				cout << "Arrival Time: " << timeInString(foundPatient->getArrivalTime()) << endl;
 				found = true;
 				break;
 			}
@@ -100,6 +121,7 @@ void EmergencyRoom::reviewPatient() {
 
 		cout << "Is there another patient whose file you would like to review? (Y/N): ";
 		cin >> answer;
+		cout << endl;
 	}
 }
 
@@ -115,6 +137,8 @@ void EmergencyRoom::setTime() {
 
 void EmergencyRoom::simHospital() {
 	bool end = false;
+
+	system("cls");
 
 	while (end == false)
 	{
@@ -248,7 +272,7 @@ void EmergencyRoom::displayQueueMovement() {
 	for (int i = 0; i < 79; i++)
 		cout << "=";
 	cout << endl;
-	cout << "| " << getCurrentTime() << " |                           Operating Room                            |" << endl;
+	cout << "| " << getCurrentTime() << " |                           OPERATING ROOM                            |" << endl;
 
 	cout << "|";
 	for (int i = 0; i < 77; i++)
@@ -367,8 +391,10 @@ void EmergencyRoom::displayQueueMovement() {
 
 	cout << "| " << setw(77) << "|" << endl;
 	cout << "| " << setw(77) << "|" << endl;
+
 	for (int i = 0; i < 79; i++)
 		cout << "=";
+
 	cout << endl;
 }
 

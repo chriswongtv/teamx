@@ -11,6 +11,7 @@ IDE Used: Xcode / Visual Studio Express 2013 / Code::Blocks / ...
 // All include statements starting from here
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "EmergencyRoom.h"
 
 using namespace std;
@@ -39,25 +40,65 @@ void goodBye();
 
 // Main function
 int main() {
-	//hello();
+	hello();
 	EmergencyRoom er;
 	// Attention:
 	// Provide data here and call your functions
 	// The main function should be simple and straightforward. 
 	// There should not be any 'logic' in the main function at all.
 
-	//goodBye();
+	goodBye();
 	return 0;
 }
 
 // All function definitions starting from here
 
 void hello() {
+	cout << endl << endl;
 
+	cout << " __          __  _                          " << endl;
+	cout << " \\ \\        / / | |                         " << endl;
+	cout << "  \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___ " << endl;
+	cout << "   \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ " << endl;
+	cout << "    \\  /\\  /  __/ | (_| (_) | | | | | |  __/" << endl;
+	cout << "     \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|" << endl;
+
+	cout << setw(20) << " _        " << endl;
+	cout << setw(20) << "| |       " << endl;
+	cout << setw(20) << "| |_ ___  " << endl;
+	cout << setw(20) << "| __/ _ \\ " << endl;
+	cout << setw(20) << "| || (_) |" << endl;
+	cout << setw(20) << " \\__\\___/ " << endl;
+
+	cout << "       __ __              _ __       __  _____            __     __          " << endl;
+	cout << "      / // /__  ___ ___  (_) /____ _/ / / __(_)_ _  __ __/ /__ _/ /____  ____" << endl;
+	cout << "     / _  / _ \\(_-</ _ \\/ / __/ _ `/ / _\\ \\/ /  ' \\/ // / / _ `/ __/ _ \\/ __/" << endl;
+	cout << "    /_//_/\\___/___/ .__/_/\\__/\\_,_/_/ /___/_/_/_/_/\\_,_/_/\\_,_/\\__/\\___/_/   " << endl;
+	cout << "                 /_/                                                         " << endl;
+	
+	cout << endl;
+	
+	cout << setw(70) << "+-+-+-+-+ +-+-+" << endl;
+	cout << setw(70) << "|T|E|A|M| |1|0|" << endl;
+	cout << setw(70) << "+-+-+-+-+ +-+-+" << endl;
+
+	cout << endl;
+
+	system("pause");
 }
 
 void goodBye() {
-
+	system("cls");
+	cout << endl << endl << endl << endl << endl << endl << endl << endl;
+	cout << " ________  ________  ________  ________  ________      ___    ___ _______      " << endl;
+	cout << "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  \\    |\\  \\  /  /|\\  ___ \\     " << endl;
+	cout << "\\ \\  \\___|\\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  \\|\\ /_   \\ \\  \\/  / | \\   __/|    " << endl;
+	cout << " \\ \\  \\  __\\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\ \\   __  \\   \\ \\    / / \\ \\  \\_|/__" << endl;
+	cout << "  \\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\ \\  \\|\\  \\   \\/  /  /   \\ \\  \\_|\\ \\" << endl;
+	cout << "   \\ \\_______\\ \\_______\\ \\_______\\ \\_______\\ \\_______\\__/  / /      \\ \\_______\\" << endl;
+	cout << "    \\|_______|\\|_______|\\|_______|\\|_______|\\|_______|\\___/ /        \\|_______|" << endl;
+	cout << "                                                     \\|___|/                   " << endl;
+	cout << endl << endl << endl << endl << endl << endl << endl << endl;                                                    
 }
 
 /*
