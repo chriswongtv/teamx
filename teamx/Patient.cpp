@@ -1,6 +1,4 @@
-//  Created by Yoke Hui Fong
-
-/** Yoke-based implementation of Patient
+/** Patient class implementation file
 @file Patient.cpp */
 
 #include "Patient.h"

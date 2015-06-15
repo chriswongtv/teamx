@@ -1,12 +1,11 @@
 /*
-Program Description: Write a detailed description of WHAT this program does from a user's perspective.
-It's extremely imortant that you can provide a detailed and relevant description in this space.
+Program Description: Hospital simulator
 
-Written By: FirstName LastName
+Written By: Team 10 - Can Yildrim, Dan Zhong, Yoke Hui Fong, Tziak Voon Wong
 
-Date Submitted: mm/dd/yyyy
+Date Submitted: 06/16/2015
 
-IDE Used: Xcode / Visual Studio Express 2013 / Code::Blocks / ...
+IDE Used: Visual Studio Ultimate 2013
 */
 // All include statements starting from here
 #include <iostream>

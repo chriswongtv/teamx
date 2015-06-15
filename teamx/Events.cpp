@@ -1,3 +1,6 @@
+/** Evemts class implementation file
+@file Events.cpp */
+
 #include "Events.h"
 #include <iostream>
 
@@ -37,19 +40,19 @@ void Events::setPriorityValue(int t) {
 	priorityValue = t * (-1);
 }
 
-string Events::getName() {
+string Events::getName() const {
 	return name;
 }
 
-int Events::getSeverity() {
+int Events::getSeverity() const {
 	return severity;
 }
 
-int Events::getArrivalTime() {
+int Events::getArrivalTime() const {
 	return arrivalTime;
 }
 
-int Events::getPriorityValue() {
+int Events::getPriorityValue() const {
 	return priorityValue;
 }
 

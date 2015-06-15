@@ -1,6 +1,4 @@
-//  Created by Tziak-Voon Wong
-
-/** Chris-based implementation of EmergencyRoom
+/** EmergencyRoom class implementation file
 @file EmergencyRoom.cpp */
 
 #include "EmergencyRoom.h"
@@ -42,6 +40,7 @@ void EmergencyRoom::promptInput() {
 		cout << "Is there another patient? (Y/N): ";
 		cin.clear();
 		cin >> end;
+		cout << endl;
 	} while (end == 'Y' || end == 'y');
 
 	/*Events newPatient("tes1", 8, 925);
@@ -246,15 +245,6 @@ void EmergencyRoom::updateWaitingRoomArray() {
 		waitingRoomDisplay.remove();
 		waitingRoomCount++;
 	}
-}
-
-void EmergencyRoom::removeWaitingRoomArray() {
-	for (int i = 0; i < waitingRoomCount; i++)
-	{
-		waitingRoomArray[i] = waitingRoomArray[i + 1];
-	}
-
-	waitingRoomCount--;
 }
 
 void EmergencyRoom::updateTime() {

@@ -1,3 +1,6 @@
+/** OperatingRoom class implementation file
+@file OperatingRoom.cpp */
+
 #include <iostream>
 #include "OperatingRoom.h"
 
