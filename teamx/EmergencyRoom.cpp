@@ -5,22 +5,23 @@
 #include <iostream>
 #include <iomanip>
 
-EmergencyRoom::EmergencyRoom() {
+EmergencyRoom::EmergencyRoom(int numOfOperatingRooms) {
 	patientCount = 0;
 	waitingRoomCount = 0;
+	ORcount = numOfOperatingRooms;
+	OperatingRoom* tempOR = new OperatingRoom[numOfOperatingRooms];
+	OR = tempOR;/*
 	OR1 = new OperatingRoom;
 	OR2 = new OperatingRoom;
-	OR3 = new OperatingRoom;
-	promptInput();
-	reviewPatient();
-	setTime();
-	simHospital();
+	OR3 = new OperatingRoom;*/
 }
 
 EmergencyRoom::~EmergencyRoom() {
-	delete OR1;
+/*	delete OR1;
 	delete OR2;
-	delete OR3;
+	delete OR3;*/
+
+	delete[] OR;
 }
 
 void EmergencyRoom::promptInput() {
@@ -148,6 +149,16 @@ void EmergencyRoom::simHospital() {
 		while (isPatientIncoming())
 			movePatient();
 
+		for (int i = 0; i < ORcount; i++){
+			if (OR[i].isEmpty() && !waitingRoom.isEmpty())
+			{
+				OR[i].incomingPatient(requestNextPatient());
+				waitingRoom.remove();
+				waitingRoomDisplay.remove();
+				patientCount--;
+			}
+		}
+		/*
 		if (OR1->isEmpty() && !waitingRoom.isEmpty())
 		{
 			OR1->incomingPatient(requestNextPatient());
@@ -171,16 +182,20 @@ void EmergencyRoom::simHospital() {
 			waitingRoomDisplay.remove();
 			patientCount--;
 		}
-
+*/
 		updateWaitingRoomArray();
 
 		displayQueueMovement();
-		OR1->update();
+
+		for (int i = 0; i < ORcount; i++){
+			OR[i].update();
+		}
+		/*OR1->update();
 		OR2->update();
-		OR3->update();
+		OR3->update();*/
 		cin.ignore();
 
-		if (OR1->isEmpty() && OR2->isEmpty() && OR3->isEmpty() && waitingRoom.isEmpty() && events.isEmpty())
+		if (OR[0].isEmpty() && OR[1].isEmpty() && OR[2].isEmpty() && waitingRoom.isEmpty() && events.isEmpty())
 			end = true;
 	}
 }
@@ -271,8 +286,8 @@ void EmergencyRoom::displayQueueMovement() {
 
 	cout << "|       | " << ".------------."					<< "  |       | " << ".------------." << "  |       | " << ".------------." << "  |" << endl;
 	cout << "|       | " << "|            |"					<< "  |       | " << "|            |" << "  |       | " << "|            |" << "  |" << endl;
-	cout << "|  O R  | " << "|    " << setw(4) << OR1->getPatientName() << "    |  |  O R  | " << "|    " << setw(4) << OR2->getPatientName() << "    |" << "  |  O R  | " << "|    " << setw(4) << OR3->getPatientName() << "    |" << "  |" << endl;
-	cout << "|   1   | " << "| " << OR1->getTimeRemaining()	<< " |  |   2   | " << "| " << OR2->getTimeRemaining() << " |  |   3   | " << "| " << OR3->getTimeRemaining() << " |  |" << endl;
+	cout << "|  O R  | " << "|    " << setw(4) << OR[0].getPatientName() << "    |  |  O R  | " << "|    " << setw(4) << OR[1].getPatientName() << "    |" << "  |  O R  | " << "|    " << setw(4) << OR[2].getPatientName() << "    |" << "  |" << endl;
+	cout << "|   1   | " << "| " << OR[0].getTimeRemaining() << " |  |   2   | " << "| " << OR[1].getTimeRemaining() << " |  |   3   | " << "| " << OR[2].getTimeRemaining() << " |  |" << endl;
 	cout << "|       | " << "|            |" << "  |       | "	<< "|            |" << "  |       | " << "|            |" << "  |" << endl;
 	cout << "|       | " << "'------------'" << "  |       | "	<< "'------------'" << "  |       | " << "'------------'" << "  |" << endl;
 

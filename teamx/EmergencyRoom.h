@@ -15,9 +15,13 @@ class EmergencyRoom
 private:
 	static const int DEFAULT_CAPACITY = 101;		// Default size of the array
 	int patientCount;								// Stores the total patient count
-	OperatingRoom* OR1;								// Stores pointer to the first operating room
-	OperatingRoom* OR2;								// Stores pointer to the second operating room
-	OperatingRoom* OR3;								// Stores pointer to the third operating room
+	//OperatingRoom* OR1;								// Stores pointer to the first operating room
+	//OperatingRoom* OR2;								// Stores pointer to the second operating room
+	//OperatingRoom* OR3;								// Stores pointer to the third operating room
+
+	OperatingRoom* OR;
+	int ORcount;
+
 	Heap_PriorityQueue<Events> events;				// Stores the incoming patient priority queue 
 	Heap_PriorityQueue<Patient> waitingRoom;		// Stores the waiting room priority queue
 	Heap_PriorityQueue<Patient> waitingRoomDisplay;	// Stores a copy of the waiting room priority queue for displaying
@@ -33,7 +37,7 @@ public:
 			waitingRoom is initialized with a priority queue.
 			Calls promptInput. patientCount set to zero.
 	*/
-	EmergencyRoom();
+	EmergencyRoom(int numOfOperatingRooms);
 	
 	/**
 	* Destructor
