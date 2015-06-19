@@ -39,13 +39,26 @@ void goodBye();
 
 // Main function
 int main() {
+	//display welcome screen
 	hello();
-	EmergencyRoom er;
-	// Attention:
-	// Provide data here and call your functions
-	// The main function should be simple and straightforward. 
-	// There should not be any 'logic' in the main function at all.
 
+	//create the emergency room class with 3 operating rooms
+	EmergencyRoom er(3);
+
+	//prompt the user for patient entry
+	er.promptInput();
+
+	//ask the user and handle patient review
+	er.reviewPatient();
+
+	//set the start time of the simulation based on 
+	//the arrival time of the first patient
+	er.setTime();
+
+	//start the simulation
+	er.simHospital();
+
+	//display goodbye screen
 	goodBye();
 	return 0;
 }
